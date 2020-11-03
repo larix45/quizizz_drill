@@ -1,0 +1,39 @@
+html, body {
+  height: auto;
+  width: auto;
+  margin: 0;
+  background-color: darkviolet;
+}
+#label_from_quiz_id 
+{
+  color: aliceblue;
+}
+#quiz_id:hover {
+  background-color: rgb(130, 0, 185);
+}
+#quiz_id {
+  background-color: darkviolet;
+  border-radius: 3px;
+  margin-left: auto;
+}
+#ok_button {
+  background-color: darkviolet;
+  margin-left: 100px;
+  margin-top: 10px;
+  color: aliceblue;
+  font-size: large;
+}
+#answers {
+
+  color: aliceblue;
+}
+table, th, td {
+  border: 1px solid black;
+  background-color: blueviolet;
+}
+td:hover {
+  background-color: rgb(81, 24, 134);
+}
+#ok_button:hover {
+  background-color: rgb(130, 0, 185);
+}
