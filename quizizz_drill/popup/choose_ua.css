@@ -17,11 +17,14 @@ html, body {
   margin-left: auto;
 }
 #ok_button {
-  background-color: darkviolet;
+  background-color: green;
   margin-left: 100px;
   margin-top: 10px;
   color: aliceblue;
   font-size: large;
+}
+#ok_button:hover {
+  background-color: rgb(6, 56, 21);
 }
 #answers {
 
@@ -33,7 +36,4 @@ table, th, td {
 }
 td:hover {
   background-color: rgb(81, 24, 134);
-}
-#ok_button:hover {
-  background-color: rgb(130, 0, 185);
 }

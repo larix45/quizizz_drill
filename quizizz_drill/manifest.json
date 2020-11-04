@@ -3,17 +3,28 @@
   "description": "Adds browser ability to fetch anwsers form quizizz",
   "manifest_version": 2,
   "name": "quizizz_anwsers",
-  "version": "1.0",
+  "version": "2.0",
   "icons": {
     "48": "icons/person-48.png"
   },
   "permissions": [
-    "https://quizizz.com/*"
+    "https://quizizz.com/*",
+    "webRequest"
+
   ],
   "browser_action": {
     "default_icon": "icons/person-32.png",
     "default_title": "Quizizz anwsers extractor",
     "default_popup": "popup/choose_ua.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://quizizz.com/*"],
+      "js": ["answer_checker.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["background_script.js"]
   }
 
 }

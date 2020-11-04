@@ -15,66 +15,71 @@ var getJSON = function(url, callback) {
 
 function data_callback(stst, data)
 {
-
-  var output = "<table>";
-  for(var i = 0; i < data["data"]["quiz"]["info"]["questions"].length; i++)
+  if(data == null)
   {
-    console.log("TYPE:" + data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"]);
-    console.log("QUESTION:" + data["data"]["quiz"]["info"]["questions"][i]["structure"]["query"]["text"]);
-    output += "<tr> <td>" + data["data"]["quiz"]["info"]["questions"][i]["structure"]["query"]["text"] + "</td>";//OUT
-    if(data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"] == "BLANK")
-    {
-      for(var j = 0; j < data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"].length; j++)
-      {
-         console.log("CORRECT ANSWERS " + (parseInt(j) + 1) + ":" + data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"][j]["text"]);   
-         output += "<td>" +  data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"][j]["text"] + "</td>";
-      }
-    } 
-    
-    
-    
-    if(data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"] == "MCQ" || data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"] == "MSQ")
-    {
-      for(var j = 0; j < data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"].length; j++)
-      {
-        console.log("ANSWERS " + (parseInt(j) + 1) + ":" + data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"][j]["text"]);  
-      } 
-    }
-    if(data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"] == "MCQ") // MCQ QUESTION
-    {
-       console.log("CORRECT ANSWER IS: " + (parseInt(data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"])+1));
-       output += "<td>" +  data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"][(parseInt(data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"]))]["text"] + "</td>";
-    }
-
-
-
-
-
-    if(data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"] == "MSQ") // MSQ QUESTION
-    {
-       var ans = "";
-
-       // NR POPRAWNEJ ODP == data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"][k]
-       for(var k = 0; k < data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"].length; k++)
-       {
-            
-         ans += parseInt(data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"][k]) + 1;
-         
-         ans += " and ";
-
-
-
-         output += "<td>" +  data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"][(parseInt(data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"][k]))]["text"] + "</td>";
-   
-       }
-       console.log("CORRECT ANSWER IS: " + ans);
-    }
-
-    output += "</tr>";
+      document.getElementById("answers").innerHTML = "<span>NIEPRAWIDŁOWE ID!</span>";
   }
-  output += "</table>";
-  document.getElementById("answers").innerHTML = output;
-  
+  else
+  {
+    var output = "<table>";
+    for(var i = 0; i < data["data"]["quiz"]["info"]["questions"].length; i++)
+    {
+      console.log("TYPE:" + data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"]);
+      console.log("QUESTION:" + data["data"]["quiz"]["info"]["questions"][i]["structure"]["query"]["text"]);
+      output += "<tr> <td>" + data["data"]["quiz"]["info"]["questions"][i]["structure"]["query"]["text"] + "</td>";//OUT
+      if(data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"] == "BLANK")
+      {
+        for(var j = 0; j < data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"].length; j++)
+        {
+          console.log("CORRECT ANSWERS " + (parseInt(j) + 1) + ":" + data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"][j]["text"]);   
+          output += "<td>" +  data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"][j]["text"] + "</td>";
+        }
+      } 
+      
+      
+      
+      if(data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"] == "MCQ" || data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"] == "MSQ")
+      {
+        for(var j = 0; j < data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"].length; j++)
+        {
+          console.log("ANSWERS " + (parseInt(j) + 1) + ":" + data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"][j]["text"]);  
+        } 
+      }
+      if(data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"] == "MCQ") // MCQ QUESTION
+      {
+        console.log("CORRECT ANSWER IS: " + (parseInt(data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"])+1));
+        output += "<td>" +  data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"][(parseInt(data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"]))]["text"] + "</td>";
+      }
+
+
+
+
+
+      if(data["data"]["quiz"]["info"]["questions"][i]["structure"]["kind"] == "MSQ") // MSQ QUESTION
+      {
+        var ans = "";
+
+        // NR POPRAWNEJ ODP == data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"][k]
+        for(var k = 0; k < data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"].length; k++)
+        {
+              
+          ans += parseInt(data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"][k]) + 1;
+          
+          ans += " and ";
+
+
+
+          output += "<td>" +  data["data"]["quiz"]["info"]["questions"][i]["structure"]["options"][(parseInt(data["data"]["quiz"]["info"]["questions"][i]["structure"]["answer"][k]))]["text"] + "</td>";
+    
+        }
+        console.log("CORRECT ANSWER IS: " + ans);
+      }
+
+      output += "</tr>";
+    }
+    output += "</table>";
+    document.getElementById("answers").innerHTML = output;
+  }
   
 }
 
@@ -88,7 +93,7 @@ function answ()
   console.log(localStorage.getItem("idq"));
   getJSON(url, data_callback);
 }
-
+//question-container-inner
 
 
 console.log(localStorage.getItem("idq"));
